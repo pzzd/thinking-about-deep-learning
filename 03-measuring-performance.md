@@ -17,7 +17,8 @@ Accuracy is the measure of correctly identified samples:
 
 Accuracy of 1.0 means all samples were predicted correctly.
 
----
+
+
 
 Precision is the measure of correctly identified positives out of all identified positives:
 
@@ -29,7 +30,8 @@ Precision of 1.0 means every sample that is identified as positive was correctly
 
 Precision doesn't tell if all the positive events were found. It ignores all samples except those labeled as positive.
 
----
+
+
 
 Recall is the measure of correctly identified positives out of all actual positives:
 

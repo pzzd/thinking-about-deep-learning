@@ -54,7 +54,7 @@ We can use our first set of flips to just make up some kind of bias. 4 heads out
 
 ```
  # Flip   Equation                       Posterior calculation
- 1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.8 / 0.5 = 0.625
+ 1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.8 = 0.625
  2 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.625 / 0.8 = 0.39
  3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
  4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 1 / 0.5 = 0.5

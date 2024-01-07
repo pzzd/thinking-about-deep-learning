@@ -129,7 +129,7 @@ Your doubt should be captured in the Prior (the probability that the coin is fai
 
 After the first test, the Prior always comes from the previous Posterior value.
 
-# Lingering doubts
+## Lingering doubts
 
 It looks like it will also work in the first test with a Prior of 1 (meaning you assume the coin is fair) but Evidence (the probability of get any one result) that is not equal between all possible results. But then what do you use for Evidence for subsequent tests? Maybe you recalculate it based on actualy outcomes?
 

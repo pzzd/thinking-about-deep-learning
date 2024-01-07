@@ -91,7 +91,7 @@ The value for posterior is my new prior.
 
 Can I recreate the chart in 4-23 with this method?
 
-In this situation we have two coins: one is fair and the other is has a bias of 0.2 (meaning 20% of flips will result in heads). The point here is to try to select one of the two coins randomly and find out which coin we picked, knowing the bias of the rigged coin: we are supposed to find P(F|H).
+In this situation we have two coins: one is fair and the other has a bias of 0.2 (meaning 20% of flips will result in heads). The point here is to try to select one of the two coins randomly and find out which coin we picked, knowing the bias of the rigged coin: we are supposed to find P(F|H).
 
 
 The probability of flipping heads is the sum of probabilities of flipping heads with either coin, divided by the number of coins:
@@ -102,18 +102,42 @@ The probability of flipping tails is figured similarly:
 
 P(T) = 0.5 + 0.8 / 2 = 0.65
 
-0. Let's assume a 50% chance of flipping heads or tails on the first flip. Likelihood P(H|F) is always 0.5. The evidence is either P(H) 0.35 or P(T) 0.65, depending on what the flip results in.
+0. Let's assume a 50% chance of flipping heads or tails on the first flip; or maybe it's just that we have a 50% chance of picking the fair coin, so P(F) is 0.5, which I use as the prior for my first flip. Likelihood P(H|F) is always 0.5. The evidence is either P(H) 0.35 or P(T) 0.65, depending on what the flip results in.
 
-1. I flip tails. The prior is 0.8, the coin bias. Then: 
+1. I flip tails. So: 
 
-Posterior = 0.5 * 0.8 / 0.65 = 0.615
+Posterior = 0.5 * 0.5 / 0.65 = 0.385
 
-The value for posterior is my new prior.
+The value for posterior is my new prior. 
 
 
-2. I flip tails. The prior is 0.615, the previous posterior. Then: 
+2. I flip tails. The prior is 0.385, the previous posterior. Then: 
 
-Posterior = 0.5 * 0.615 / 0.65 = 0.473 XXX
+Posterior = 0.5 * 0.385 / 0.65 = 0.296
+
+3. I flip tails. Posterior = 0.5 * 0.296 / 0.65 = 0.228
+
+4. I flip tails. Posterior = 0.5 * 0.228 / 0.65 = 0.175  
+
+5. I flip tails. Posterior = 0.5 * 0.175 / 0.65 = 0.135
+ 
+6. I flip tails. Posterior = 0.5 * 0.135 / 0.65 = 0.104
+
+7. I flip tails. Posterior = 0.5 * 0.104 / 0.65 = 0.08
+
+8. I flip tails. Posterior = 0.5 * 0.08 / 0.65 = 0.062
+
+9. I flip tails. Posterior = 0.5 * 0.062 / 0.65 = 0.048
+    
+10. I flip heads. Now we use P(F|H) = P(H|F) * P(F) / P(H).
+
+Posterior = 0.5 * 0.048 / 0.35 =
+
+12. I flip heads.
+13. I flip tails.
+
+
+
 
 P(F|H) = P(H|F) P(F) / P(H)
 P(F|H) = 0.5 * 0.615 / 0.35XXx

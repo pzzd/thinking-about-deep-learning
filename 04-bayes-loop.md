@@ -1,58 +1,65 @@
 # Figuring out a Bayes Loop by Hand
 
-I had a lot of trouble understanding how to use Bayes Theorem in a loop according to the description in Chapter 4. The idea that you pick a probability that you have a fair coin makes sense. And it makes sense that you use the outcome of test (posterior) as a parameter in the next test (the prior to be  exact). But I wasn't sure how to start off.
+I had a lot of trouble understanding how to use Bayes Theorem in a loop according to the description in Chapter 4. From _Deep Learning_, the equation for Bayes Theoreom `Posterior = Likelihood * Prior / Evidence` makes intuitive sense: you have an expected probability (Likelihood) and you adjust it with Prior information and current Evidence.The idea that you pick a probability that you have a fair coin (Prior, or P(F)) makes sense. And it makes sense that you use the outcome of a test (Posterior) as a parameter in the next test (the Prior): this is how experience influences the probability you are testing for. But I wasn't sure how to start off.
 
-What if I start out assuming the coin is fair? Let's try some flips, and use Bayes Theorem `P(F|H) = P(H|F) P(F) / P(H)` to find the probability that we are using a fair coin. F means "it is a fair coin" and H means "the result of a flip is heads". From _Deep Learning_, one way to write out Bayes Theoreom is `Posterior = Likelihood * Prior / Evidence`.
+To use Bayes Theorem in a loop, so that accumulated experience inform the probability you are using a fair coin, use `P(F|H) = P(H|F) P(F) / P(H)`. F means "it is a fair coin" and H means "the result of a flip is heads". You are supposed to use the version of the theorem that matches the outcome of the flip. When the outcome is heads, we use `P(F|H) = P(H|F) P(F) / P(H)` and for tails we use `P(F|T) = P(T|F) P(F) / P(T)`.
 
-You are supposed to use the version of the theorem that matches the outcome of the flip. When the outcome is heads, we use `P(F|H) = P(H|F) P(F) / P(H)` and for tails we use `P(F|T) = P(T|F) P(F) / P(T)`.
+What if I start out assuming the coin is fair? Let's try some flips. 
 
+1. I flip heads. Likelihood is 0.5, prior is 1, evidence is 0.5. Then:
 
-1. I flip heads. Likelihood is 1/2, prior is 1, evidence is 1/2. Then:
-
-Posterior = 1/2 * 1 / 1/2 = 1
-
-The value for posterior is my new prior.
-
-2. I flip heads. Likelihood is 1/2, prior is 1, evidence is 1/2. Then: 
-
-Posterior = 1/2 * 1 / 1/2 = 1
+Posterior = 0.5 * 1 / 0.5 = 1
 
 The value for posterior is my new prior.
 
-3. I flip heads. Likelihood is 1/2, prior is 1, evidence is 1/2. Then: 
+2. I flip heads. Likelihood is 0.5, prior is 1, evidence is 0.5. Then: 
 
-Posterior = 1/2 * 1 / 1/2 = 1
-
-The value for posterior is my new prior.
-
-4. I flip tails. Likelihood (this time P(T|F) is 1/2, prior is 1, evidence (this time P(T) is 1/2. Then: 
-
-Posterior = 1/2 * 1 / 1/2 = 1
+Posterior = 0.5 * 1 / 0.5 = 1
 
 The value for posterior is my new prior.
 
-5. I flip heads. Likelihood (this time P(T|H) is 1/2, prior is 1, evidence (this time P(H) is 1/2. Then: 
+3. I flip heads. Likelihood is 0.5, prior is 1, evidence is 0.5. Then: 
 
-Posterior = 1/2 * 1 / 1/2 = 1
+Posterior = 0.5 * 1 / 0.5 = 1
 
 The value for posterior is my new prior.
 
+4. I flip tails. Likelihood (this time P(T|F) is 0.5, prior is 1, evidence (this time P(T) is 0.5. Then: 
+
+Posterior = 0.5 * 1 / 0.5 = 1
+
+The value for posterior is my new prior.
+
+5. I flip heads. Likelihood (this time P(T|H) is 0.5, prior is 1, evidence (this time P(H) is 0.5. Then: 
+
+Posterior = 0.5 * 1 / 0.5 = 1
+
+The value for posterior is my new prior.
+
+To summarize in a table:
 ```
  # Flip   Equation                       Posterior calculation
- 1 Heads  P(F|H) = P(T|H) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5   = 0.5
+ 1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
+ 2 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
+ 3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
+ 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 1 / 0.5 = 0.5
+ 5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
 ```
 
 The number of heads doesn't seem to have any bearing on the posterior at all. WTH? It looks like you could get heads a million times and the posterior will always be 1: over time this math shows you have a fair coin when clearly no normal human would be very suspicious.
 
 I think my mistake was that I assumed the coin is fair, and so I never initiated the first trial with any doubt. To introduce doubt you have give a probability that the coin is biased. 
 
-We can use our first set of flips to just make on some kind of bias. 4 heads out of 5 flips is a bias of .8. We use this for P(H), the evidence.
+We can use our first set of flips to just make up some kind of bias. 4 heads out of 5 flips is a bias of .8. We use this for P(H), the evidence.
 
-1. I flip heads. Likelihood is 1/2, prior is 1, evidence is 0.8. Then:
-
-Posterior = 0.5 * 1 / 0.8 = 0.625
-
-The value for posterior is my new prior.
+```
+ # Flip   Equation                       Posterior calculation
+ 1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.8 / 0.5 = 0.625
+ 2 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.625 / 0.5 = 0.5
+ 3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
+ 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 1 / 0.5 = 0.5
+ 5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
+```
 
 2. I flip heads. Likelihood is 0.5, prior is 0.625, evidence is 0.8. Then: 
 
@@ -77,6 +84,8 @@ The value for posterior is my new prior. And you can see the tails pushes up the
 Posterior = 0.5 * 0.6 / 0.8 = 0.375
 
 The value for posterior is my new prior.
+
+
 
 Can I recreate the chart in 4-23 with this method?
 

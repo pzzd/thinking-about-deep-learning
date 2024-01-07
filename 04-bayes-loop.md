@@ -131,21 +131,18 @@ Posterior = 0.5 * 0.385 / 0.65 = 0.296
     
 10. I flip heads. Now we use P(F|H) = P(H|F) * P(F) / P(H).
 
-Posterior = 0.5 * 0.048 / 0.35 =
+Posterior = 0.5 * 0.048 / 0.35 = 0.069
 
-12. I flip heads.
-13. I flip tails.
+12. I flip heads. Posterior = 0.5 * 0.069 / 0.35 = 0.099
+     
+13. I flip tails, back to P(F|T) = P(T|F) * P(F) / P(H)
+
+Posterior = 0.5 * 0.099 / 0.65 = 0.076
 
 
 
 
-P(F|H) = P(H|F) P(F) / P(H)
-P(F|H) = 0.5 * 0.615 / 0.35XXx
-
-P(F|T) = 0.5 * 0.615XXX
-
-The value for posterior is my new prior.
-
+This doesn't quite match the chart in 4-23.
 
 
 So some lessons:

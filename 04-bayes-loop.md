@@ -50,49 +50,25 @@ The number of heads doesn't seem to have any bearing on the posterior at all. WT
 
 My mistake was that I assumed the coin is fair, and so I never initiated the first trial with any doubt. To introduce doubt you have give a probability that the coin is biased. 
 
-We can use our first set of flips to just make up some kind of bias. 4 heads out of 5 flips is a bias of .8. We use this for P(H), the evidence.
+We can use our first set of flips to just make up some kind of bias. Four heads out of 5 flips is a bias of 0.8: we use this for P(H), the evidence.
 
 ```
  # Flip   Equation                       Posterior calculation
  1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.8 = 0.625
  2 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.625 / 0.8 = 0.39
- 3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
- 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 1 / 0.5 = 0.5
- 5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
+ 3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.39 / 0.8 = 0.24
+ 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.24 / 0.2 = 0.6
+ 5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.6 / 0.8 = 0.375
 ```
 
-2. I flip heads. Likelihood is 0.5, prior is 0.625, evidence is 0.8. Then: 
-
-Posterior = 0.5 * 0.625 / 0.8 = 0.39
-
-The value for posterior is my new prior.
-
-3. I flip heads. Likelihood is 1/2, prior is 1, evidence is 1/2. Then: 
-
-Posterior = 0.5 * .39 / 0.8 = 0.24
-
-The value for posterior is my new prior.
-
-4. I flip tails. Because the result is tails, we use P(T|F), which is is 0.5 (we have half a chance of tails with a fair coin). The prior comes from our previous posterior: 0.24. The evidence comes from our first set of flips: we found we got 1 tails out of 5, so P(T) is 0.2. Then: 
-
-Posterior = 0.5 * 0.24 / 0.2 = 0.6
-
-The value for posterior is my new prior. And you can see the tails pushes up the probability that we have a fair coin after all.
-
-5. I flip heads. Likelihood (this time P(T|H) is 0.5, prior is 0.6, evidence (this time P(H) is 0.8. Then: 
-
-Posterior = 0.5 * 0.6 / 0.8 = 0.375
-
-The value for posterior is my new prior.
-
+On #4, I flip tails. Because the result is tails, we use P(T|F), which is is 0.5 (we have half a chance of tails with a fair coin). The prior comes from our previous posterior: 0.24. The evidence comes from our first set of flips: we found we got 1 tails out of 5, so P(T) is 0.2. Tails pushes up the probability that we have a fair coin after all.
 
 
 Can I recreate the chart in 4-23 with this method?
 
-In this situation we have two coins: one is fair and the other has a bias of 0.2 (meaning 20% of flips will result in heads). The point here is to try to select one of the two coins randomly and find out which coin we picked, knowing the bias of the rigged coin: we are supposed to find P(F|H).
+In this situation we have two coins: one is fair and the other has a bias of 0.2 (meaning 20% of flips will result in heads). The point here is to select one of the two coins randomly and find out which coin we picked, knowing the bias of the rigged coin: we are supposed to find P(F|H).
 
 The probability of flipping heads is the sum of probabilities of flipping heads with either coin, divided by the number of coins: `P(H) = 0.5 + 0.2 / 2 = 0.35`. The probability of flipping tails is figured similarly: `P(T) = 0.5 + 0.8 / 2 = 0.65`. I will use P(H) or P(T) for the evidence, depending on the result of the flip.
-
 
 The first prior P(F) is 0.5. I think this is right because we have a 50% chance of picking the fair coin. 
 
@@ -139,6 +115,12 @@ This doesn't quite match the chart in 4-23 but it does sort of track the chart. 
 This time the values seems to match the chart better.
 
 
-So some lessons:
+## Lessons learned
 
-You have to capture your doubt in the evidence value in the Bayes Theorem. And evidence can be picked out of think air, or you can create some evidence with your intuition or observations.
+You have to capture your doubt in the evidence value in the Bayes Theorem. And evidence can be picked out of think air, or you can create some evidence with your intuition or observations. This makes sense is a narrative way: if you have absolutely no doubt the coin is fair, then of course you have a 50/50 chance of heads or tails.
+
+then P(F) is 1 and of course P(F|H) is 1. 
+
+The doubt can be introduced in the Prior from your intuition on the first test. From there, it always comes from the previous Posterior value.
+
+

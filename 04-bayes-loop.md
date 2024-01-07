@@ -133,16 +133,33 @@ Posterior = 0.5 * 0.385 / 0.65 = 0.296
 
 Posterior = 0.5 * 0.048 / 0.35 = 0.069
 
-12. I flip heads. Posterior = 0.5 * 0.069 / 0.35 = 0.099
+11. I flip heads. Posterior = 0.5 * 0.069 / 0.35 = 0.099
      
-13. I flip tails, back to P(F|T) = P(T|F) * P(F) / P(H)
+12. I flip tails, back to P(F|T) = P(T|F) * P(F) / P(T)
 
 Posterior = 0.5 * 0.099 / 0.65 = 0.076
 
 
 
 
-This doesn't quite match the chart in 4-23.
+This doesn't quite match the chart in 4-23, so I tried the same above but rounded the results to two decimal places. This time the values seems to match the chart better.
+
+
+```
+ # Flip   Equation                       Posterior calculation
+ 1 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.5 / 0.65 = 0.38 
+ 2 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.38 / 0.65 = 0.29
+ 3 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.29 / 0.65 = 0.22
+ 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.22 / 0.65 = 0.17
+ 5 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.17 / 0.65 = 0.13
+ 6 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.13 / 0.65 = 0.1
+ 7 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.1 / 0.65 = 0.08
+ 8 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.08 / 0.65 = 0.06
+ 9 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.06 / 0.65 = 0.04
+10 Tails  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.04 / 0.35 = 0.06
+11 Tails  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.06 / 0.35 = 0.09
+12 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.09 / 0.65 = 0.07
+```
 
 
 So some lessons:

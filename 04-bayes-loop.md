@@ -1,8 +1,10 @@
 # Figuring out a Bayes Loop by Hand
 
-I had a lot of trouble understanding how to use Bayes Theorem in a loop according to the description in Chapter 4. From _Deep Learning_, the equation for Bayes Theoreom `Posterior = Likelihood * Prior / Evidence` makes intuitive sense: you have an expected probability (Likelihood) and you adjust it with Prior information and current Evidence.The idea that you pick a probability that you have a fair coin (Prior, or P(F)) makes sense. And it makes sense that you use the outcome of a test (Posterior) as a parameter in the next test (the Prior): this is how experience influences the probability you are testing for. But I wasn't sure how to start off.
+I had a lot of trouble understanding how to use Bayes Theorem in a loop according to the description in Chapter 4. From _Deep Learning_, the equation for Bayes Theoreom `Posterior = Likelihood * Prior / Evidence` makes intuitive sense: you have an expected probability (Likelihood) and you adjust it with Prior information and current Evidence.The idea that you pick a probability that you have a fair coin (Prior, or P(F)) makes sense. And it makes sense that you use the outcome of a test (Posterior) as a parameter in the next test (the Prior): this is how experience influences the probability you are testing for. But I wasn't sure how to start off the loop.
 
-To use Bayes Theorem in a loop, so that accumulated experience inform the probability you are using a fair coin, use `P(F|H) = P(H|F) P(F) / P(H)`. F means "it is a fair coin" and H means "the result of a flip is heads". You are supposed to use the version of the theorem that matches the outcome of the flip. When the outcome is heads, we use `P(F|H) = P(H|F) P(F) / P(H)` and for tails we use `P(F|T) = P(T|F) P(F) / P(T)`.
+To use Bayes Theorem in a loop, so that accumulated experience informs the probability you are using a fair coin, use `P(F|H) = P(H|F) P(F) / P(H)`. F means "it is a fair coin" and H means "the result of a flip is heads". You are supposed to use the version of the theorem that matches the outcome of the flip. When the outcome is heads, we use `P(F|H) = P(H|F) P(F) / P(H)` and for tails we use `P(F|T) = P(T|F) P(F) / P(T)`.
+
+## Testing a coin assuming it is fair
 
 What if I start out assuming the coin is fair? Let's try some flips. 
 
@@ -46,11 +48,13 @@ To summarize in a table:
  5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5 = 0.5
 ```
 
-The number of heads doesn't seem to have any bearing on the posterior at all. WTH? It looks like you could get heads a million times and the posterior will always be 1: over time this math shows you have a fair coin when clearly no normal human would be very suspicious.
+The number of heads doesn't seem to have any bearing on the Posterior at all. WTH? It looks like you could get heads a million times and the posterior will always be 1: over time this math shows you have a fair coin when clearly any normal human would be very suspicious.
 
-My mistake was that I assumed the coin is fair, and so I never initiated the first trial with any doubt. To introduce doubt you have give a probability that the coin is biased. 
+My mistake was that I didn't introduce any kind of bias or doubt in my calculations. To introduce doubt you have give a probability that the coin is biased, and it can't be 1. 
 
-We can use our first set of flips to just make up some kind of bias. Four heads out of 5 flips is a bias of 0.8: we use this for P(H), the evidence.
+# Testing again with some Evidence
+
+We can use our first set of flips to just make up some kind of bias. Four heads out of 5 flips is a bias of 0.8: we use this for P(H), the Evidence.
 
 ```
  # Flip   Equation                       Posterior calculation
@@ -61,8 +65,10 @@ We can use our first set of flips to just make up some kind of bias. Four heads 
  5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.6 / 0.8 = 0.375
 ```
 
-On #4, I flip tails. Because the result is tails, we use P(T|F), which is is 0.5 (we have half a chance of tails with a fair coin). The prior comes from our previous posterior: 0.24. The evidence comes from our first set of flips: we found we got 1 tails out of 5, so P(T) is 0.2. Tails pushes up the probability that we have a fair coin after all.
+On #4, I flip tails. Because the result is tails, we use P(T|F) = 0.5 (we have half a chance of tails with a fair coin). The Prior comes from our previous Posterior of 0.24. The Evidence comes from our first set of flips: we found we got 1 tails out of 5, so P(T) is 0.2. Tails pushes up the probability that we have a fair coin after all.
 
+
+## Looping through the example in Chapter 4
 
 Can I recreate the chart in 4-23 with this method?
 
@@ -117,10 +123,13 @@ This time the values seems to match the chart better.
 
 ## Lessons learned
 
-You have to capture your doubt in the evidence value in the Bayes Theorem. And evidence can be picked out of think air, or you can create some evidence with your intuition or observations. This makes sense is a narrative way: if you have absolutely no doubt the coin is fair, then of course you have a 50/50 chance of heads or tails.
+To use a Bayes Loop to calculate a probability, you have to put a number value to your doubt or the bias you think is there is. This makes sense is a non-technical, narrative kind of way: if you have absolutely no doubt the coin is fair, then of course you have a 50/50 chance of heads or tails every single time. 
 
-then P(F) is 1 and of course P(F|H) is 1. 
+Your doubt should be captured in the Prior (the probability that the coin is fair) in the first test. The value for the Prior can be picked out of thin air, or you can use intuition or observations. 
 
-The doubt can be introduced in the Prior from your intuition on the first test. From there, it always comes from the previous Posterior value.
+After the first test, the Prior always comes from the previous Posterior value.
 
+# Lingering doubts
+
+It looks like it will also work in the first test with a Prior of 1 (meaning you assume the coin is fair) but Evidence (the probability of get any one result) that is not equal between all possible results. But then what do you use for Evidence for subsequent tests? Maybe you recalculate it based on actualy outcomes?
 

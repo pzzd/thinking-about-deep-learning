@@ -1,26 +1,10 @@
-I had a lot of trouble understanding how to use Bayes Theorem in a loop according to the description in Chapter 4.
+# Figuring out a Bayes Loop by Hand
 
-F = we have a fair coin
-H = we flip a heads
+I had a lot of trouble understanding how to use Bayes Theorem in a loop according to the description in Chapter 4. The idea that you pick a probability that you have a fair coin makes sense. And it makes sense that you use the outcome of test (posterior) as a parameter in the next test (the prior to be  exact). But I wasn't sure how to start off.
 
-P(F|H) = P(H|F) P(F) / P(H)
+What if I start out assuming the coin is fair? Let's try some flips, and use Bayes Theorem `P(F|H) = P(H|F) P(F) / P(H)` to find the probability that we are using a fair coin. F means "it is a fair coin" and H means "the result of a flip is heads". From _Deep Learning_, one way to write out Bayes Theoreom is `Posterior = Likelihood * Prior / Evidence`.
 
-Posterior = Likelihood * Prior / Evidence
-
-
-These ideas make sense:
-- you pick a probability that you have a fair coin
-- you use the outcome of test (posterior) as a parameter in the next test (the prior to be  exact)
-
-What if I start out assuming the coin is fair? Let's try some flips.
-
-Posterior = Likelihood * Prior / Evidence
-
-When I flip heads, I'll use this version:
-P(F|H) = P(H|F) P(F) / P(H)
-
-For tails, I'll use this version:
-P(F|T) = P(T|F) P(F) / P(T)
+You are supposed to use the version of the theorem that matches the outcome of the flip. When the outcome is heads, we use `P(F|H) = P(H|F) P(F) / P(H)` and for tails we use `P(F|T) = P(T|F) P(F) / P(T)`.
 
 
 1. I flip heads. Likelihood is 1/2, prior is 1, evidence is 1/2. Then:
@@ -52,6 +36,11 @@ The value for posterior is my new prior.
 Posterior = 1/2 * 1 / 1/2 = 1
 
 The value for posterior is my new prior.
+
+```
+ # Flip   Equation                       Posterior calculation
+ 1 Heads  P(F|H) = P(T|H) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.5   = 0.5
+```
 
 The number of heads doesn't seem to have any bearing on the posterior at all. WTH? It looks like you could get heads a million times and the posterior will always be 1: over time this math shows you have a fair coin when clearly no normal human would be very suspicious.
 

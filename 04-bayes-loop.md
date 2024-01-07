@@ -58,11 +58,11 @@ We can use our first set of flips to just make up some kind of bias. Four heads 
 
 ```
  # Flip   Equation                       Posterior calculation
- 1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.8 = 0.625
+ 1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.8     = 0.625
  2 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.625 / 0.8 = 0.39
- 3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.39 / 0.8 = 0.24
- 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.24 / 0.2 = 0.6
- 5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.6 / 0.8 = 0.375
+ 3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.39 / 0.8  = 0.24
+ 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.24 / 0.2  = 0.6
+ 5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.6 / 0.8   = 0.375
 ```
 
 On #4, I flip tails. Because the result is tails, we use P(T|F) = 0.5 (we have half a chance of tails with a fair coin). The Prior comes from our previous Posterior of 0.24. The Evidence comes from our first set of flips: we found we got 1 tails out of 5, so P(T) is 0.2. Tails pushes up the probability that we have a fair coin after all.

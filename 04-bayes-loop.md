@@ -93,73 +93,52 @@ Can I recreate the chart in 4-23 with this method?
 
 In this situation we have two coins: one is fair and the other has a bias of 0.2 (meaning 20% of flips will result in heads). The point here is to try to select one of the two coins randomly and find out which coin we picked, knowing the bias of the rigged coin: we are supposed to find P(F|H).
 
-
-The probability of flipping heads is the sum of probabilities of flipping heads with either coin, divided by the number of coins:
-
-P(H) = 0.5 + 0.2 / 2 = 0.35
-
-The probability of flipping tails is figured similarly:
-
-P(T) = 0.5 + 0.8 / 2 = 0.65
-
-0. Let's assume a 50% chance of flipping heads or tails on the first flip; or maybe it's just that we have a 50% chance of picking the fair coin, so P(F) is 0.5, which I use as the prior for my first flip. Likelihood P(H|F) is always 0.5. The evidence is either P(H) 0.35 or P(T) 0.65, depending on what the flip results in.
-
-1. I flip tails. So: 
-
-Posterior = 0.5 * 0.5 / 0.65 = 0.385
-
-The value for posterior is my new prior. 
+The probability of flipping heads is the sum of probabilities of flipping heads with either coin, divided by the number of coins: `P(H) = 0.5 + 0.2 / 2 = 0.35`. The probability of flipping tails is figured similarly: `P(T) = 0.5 + 0.8 / 2 = 0.65`. I will use P(H) or P(T) for the evidence, depending on the result of the flip.
 
 
-2. I flip tails. The prior is 0.385, the previous posterior. Then: 
+The first prior P(F) is 0.5. I think this is right because we have a 50% chance of picking the fair coin. 
 
-Posterior = 0.5 * 0.385 / 0.65 = 0.296
+Likelihoods P(H|F) and P(T|F) are always 0.5. 
 
-3. I flip tails. Posterior = 0.5 * 0.296 / 0.65 = 0.228
+Now we have all the pieces need to figure the posterior P(F|H) repeatedly, hopefully helping decide if we picked the fair or biased coin.f
 
-4. I flip tails. Posterior = 0.5 * 0.228 / 0.65 = 0.175  
-
-5. I flip tails. Posterior = 0.5 * 0.175 / 0.65 = 0.135
- 
-6. I flip tails. Posterior = 0.5 * 0.135 / 0.65 = 0.104
-
-7. I flip tails. Posterior = 0.5 * 0.104 / 0.65 = 0.08
-
-8. I flip tails. Posterior = 0.5 * 0.08 / 0.65 = 0.062
-
-9. I flip tails. Posterior = 0.5 * 0.062 / 0.65 = 0.048
-    
-10. I flip heads. Now we use P(F|H) = P(H|F) * P(F) / P(H).
-
-Posterior = 0.5 * 0.048 / 0.35 = 0.069
-
-11. I flip heads. Posterior = 0.5 * 0.069 / 0.35 = 0.099
-     
-12. I flip tails, back to P(F|T) = P(T|F) * P(F) / P(T)
-
-Posterior = 0.5 * 0.099 / 0.65 = 0.076
+```
+ # Flip   Equation                       Posterior calculation
+ 1 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.5 / 0.65   = 0.385 
+ 2 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.385 / 0.65 = 0.296
+ 3 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.296 / 0.65 = 0.228
+ 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.228 / 0.65 = 0.175
+ 5 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.175 / 0.65 = 0.135
+ 6 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.135 / 0.65 = 0.104
+ 7 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.104 / 0.65 = 0.08
+ 8 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.08 / 0.65  = 0.062
+ 9 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.062 / 0.65 = 0.048
+10 Tails  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.048 / 0.35 = 0.069
+11 Tails  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.069 / 0.35 = 0.099
+12 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.099 / 0.65 = 0.076
+```
 
 
-
-
-This doesn't quite match the chart in 4-23, so I tried the same above but rounded the results to two decimal places. This time the values seems to match the chart better.
+This doesn't quite match the chart in 4-23 but it does sort of track the chart. Let's try that again but round the posterior to two decimal places. 
 
 
 ```
  # Flip   Equation                       Posterior calculation
- 1 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.5 / 0.65 = 0.38 
+ 1 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.5 / 0.65  = 0.38 
  2 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.38 / 0.65 = 0.29
  3 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.29 / 0.65 = 0.22
  4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.22 / 0.65 = 0.17
  5 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.17 / 0.65 = 0.13
  6 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.13 / 0.65 = 0.1
- 7 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.1 / 0.65 = 0.08
+ 7 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.1 / 0.65  = 0.08
  8 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.08 / 0.65 = 0.06
  9 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.06 / 0.65 = 0.04
 10 Tails  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.04 / 0.35 = 0.06
 11 Tails  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.06 / 0.35 = 0.09
 12 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.09 / 0.65 = 0.07
 ```
+
+This time the values seems to match the chart better.
 
 
 So some lessons:

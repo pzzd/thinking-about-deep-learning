@@ -1,8 +1,8 @@
-# Figuring out a Bayes Loop by Hand
+# Figuring out a Bayes' Loop by Hand
 
-I had a lot of trouble understanding how to use Bayes Theorem in a loop according to the description in Chapter 4. From _Deep Learning_, the equation for Bayes Theoreom `Posterior = Likelihood * Prior / Evidence` makes intuitive sense: you have an expected probability (Likelihood) and you adjust it with Prior information and current Evidence.The idea that you pick a probability that you have a fair coin (Prior, or P(F)) makes sense. And it makes sense that you use the outcome of a test (Posterior) as a parameter in the next test (the Prior): this is how experience influences the probability you are testing for. But I wasn't sure how to start off the loop.
+I had a lot of trouble understanding how to use Bayes' Theorem in a loop according to the description in Chapter 4. From _Deep Learning_, the equation for Bayes' Theoreom `Posterior = Likelihood * Prior / Evidence` makes intuitive sense: you have an expected probability (Likelihood) and you adjust it with Prior information and current Evidence.The idea that you pick a probability that you have a fair coin (Prior, or P(F)) makes sense. And it makes sense that you use the outcome of a test (Posterior) as a parameter in the next test (the Prior): this is how experience influences the probability you are testing for. But I wasn't sure how to start off the loop.
 
-To use Bayes Theorem in a loop, so that accumulated experience informs the probability you are using a fair coin, use `P(F|H) = P(H|F) P(F) / P(H)`. F means "it is a fair coin" and H means "the result of a flip is heads". You are supposed to use the version of the theorem that matches the outcome of the flip. When the outcome is heads, we use `P(F|H) = P(H|F) P(F) / P(H)` and for tails we use `P(F|T) = P(T|F) P(F) / P(T)`.
+To use Bayes' Theorem in a loop, so that accumulated experience informs the probability you are using a fair coin, use `P(F|H) = P(H|F) P(F) / P(H)`. F means "it is a fair coin" and H means "the result of a flip is heads". You are supposed to use the version of the theorem that matches the outcome of the flip. When the outcome is heads, we use `P(F|H) = P(H|F) P(F) / P(H)` and for tails we use `P(F|T) = P(T|F) P(F) / P(T)`.
 
 ## Testing a coin assuming it is fair
 

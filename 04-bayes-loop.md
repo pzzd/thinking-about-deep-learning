@@ -116,7 +116,7 @@ After the first test, the Prior always comes from the previous Posterior value.
 
 ## Using Bayes' Loop with a single coin
 
-_Deep Learning_ uses a single coin example to explain the frequentist method, but moves to a more complicated example for the Bayes method. But I wonder if Bayes' Loop can be used to determine the bias of a coin without comparing it to another coin? 
+_Deep Learning_ uses a single coin example to explain the frequentist method, but moves to a more complicated example for the Bayes method. But I wonder if Bayes' Loop can be used to determine the bias of a coin without comparing it to another coin? Trying to apply different methods to the same scenario would make it easier for me to understand.
 
 I will use the very first set of flips to just make up some kind of bias. Four heads out of 5 flips is a bias of 0.8: we use this for P(H), the Evidence.
 

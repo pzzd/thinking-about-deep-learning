@@ -50,27 +50,12 @@ To summarize in a table:
 
 The number of heads doesn't seem to have any bearing on the Posterior at all. WTH? It looks like you could get heads a million times and the posterior will always be 1: over time this math shows you have a fair coin when clearly any normal human would be very suspicious.
 
-My mistake was that I didn't introduce any kind of bias or doubt in my calculations. To introduce doubt you have give a probability that the coin is biased, and it can't be 1. 
-
-# Testing again with some Evidence
-
-We can use our first set of flips to just make up some kind of bias. Four heads out of 5 flips is a bias of 0.8: we use this for P(H), the Evidence.
-
-```
- # Flip   Equation                       Posterior calculation
- 1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.8     = 0.625
- 2 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.625 / 0.8 = 0.39
- 3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.39 / 0.8  = 0.24
- 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.24 / 0.2  = 0.6
- 5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.6 / 0.8   = 0.375
-```
-
-On #4, I flip tails. Because the result is tails, we use P(T|F) = 0.5 (we have half a chance of tails with a fair coin). The Prior comes from our previous Posterior of 0.24. The Evidence comes from our first set of flips: we found we got 1 tails out of 5, so P(T) is 0.2. Tails pushes up the probability that we have a fair coin after all.
+My mistake was that I didn't introduce any kind of bias or doubt in my calculations. To introduce doubt you have give a probability that the coin is unbiased `P(F)`, and it can't be 1. 
 
 
 ## Looping through the example in Chapter 4
 
-Can I recreate the chart in 4-23 with this method?
+Can I recreate the chart in 4-23 with this method? I'll need a Prior that is not 1.
 
 In this situation we have two coins: one is fair and the other has a bias of 0.2 (meaning 20% of flips will result in heads). The point here is to select one of the two coins randomly and find out which coin we picked, knowing the bias of the rigged coin: we are supposed to find P(F|H).
 
@@ -78,9 +63,9 @@ The probability of flipping heads is the sum of probabilities of flipping heads 
 
 The first prior P(F) is 0.5. I think this is right because we have a 50% chance of picking the fair coin. 
 
-Likelihoods P(H|F) and P(T|F) are always 0.5. 
+Likelihoods `P(H|F)` and `P(T|F)` are always 0.5. 
 
-Now we have all the pieces need to figure the posterior P(F|H) repeatedly, hopefully helping decide if we picked the fair or biased coin.f
+Now we have all the pieces we need to figure the Posterior `P(F|H)` repeatedly, hopefully helping decide if we picked the fair or biased coin.f
 
 ```
  # Flip   Equation                       Posterior calculation
@@ -123,13 +108,29 @@ This time the values seems to match the chart better.
 
 ## Lessons learned
 
-To use a Bayes Loop to calculate a probability, you have to put a number value to your doubt or the bias you think is there is. This makes sense is a non-technical, narrative kind of way: if you have absolutely no doubt the coin is fair, then of course you have a 50/50 chance of heads or tails every single time. 
+To use a Bayes' Loop to calculate a probability, you have to put a number value to your doubt or the bias you think is there is. This makes sense is a non-technical, narrative kind of way: if you have absolutely no doubt the coin is fair, then of course you have a 50/50 chance of heads or tails every single time. 
 
 Your doubt should be captured in the Prior (the probability that the coin is fair) in the first test. The value for the Prior can be picked out of thin air, or you can use intuition or observations. 
 
 After the first test, the Prior always comes from the previous Posterior value.
 
-## Lingering doubts
+## Using Bayes' Loop with a single coin
 
-It looks like it will also work in the first test with a Prior of 1 (meaning you assume the coin is fair) but Evidence (the probability of get any one result) that is not equal between all possible results. But then what do you use for Evidence for subsequent tests? Maybe you recalculate it based on actualy outcomes?
+_Deep Learning_ uses a single coin example to explain the frequentist method, but moves to a more complicated example for the Bayes method. But I wonder if Bayes' Loop can be used to determine the bias of a coin without comparing it to another coin? 
 
+I will use the very first set of flips to just make up some kind of bias. Four heads out of 5 flips is a bias of 0.8: we use this for P(H), the Evidence.
+
+```
+ # Flip   Equation                       Posterior calculation
+ 1 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 1 / 0.8     = 0.625
+ 2 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.625 / 0.8 = 0.39
+ 3 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.39 / 0.8  = 0.24
+ 4 Tails  P(F|T) = P(T|F) * P(F) / P(T)  Posterior = 0.5 * 0.24 / 0.2  = 0.6
+ 5 Heads  P(F|H) = P(H|F) * P(F) / P(H)  Posterior = 0.5 * 0.6 / 0.8   = 0.375
+```
+
+On #4, I flip tails. Because the result is tails, we use P(T|F) = 0.5 (we have half a chance of tails with a fair coin). The Prior comes from our previous Posterior of 0.24. The Evidence comes from our first set of flips: we found we got 1 tails out of 5, so P(T) is 0.2. Tails pushes up the probability that we have a fair coin after all.
+
+_Deep Learning_ says we should change the value of the Prior using the Bayes' Loop, not the Evidence. So is the above example an appropriate use of Bayes' Rule?  If so, what do you use for Evidence for subsequent tests? Maybe you recalculate it every time based on actual outcomes?
+
+If you cannot use a Bayes' Loop to find the probability that a single coin is fair, why not?

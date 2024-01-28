@@ -15,6 +15,8 @@ To control overfitting:
 - early stopping: stopping some time before training error is 0. Library functions come with a way to help detect when validation error starts to rise from a set of noisy validation data.
 - regularization: these are techniques to continue learning process as long as possible. One way is limiting value of parameters used by classifier, so that focus is not concentrated too much on a single parameter. But there are lot of other ways, too.
 
+## Frequentist method to control overfitting
+
 **Bias** is the tendency of a system to consistently learn the wrong things. A large amount of bias means that a system is prejudiced toward a particular kind of result. Data is not much of an influence. High bias avoids overfitting but doesn't match data very well.
 
 **Variance** is the tendency of a system to learn irrelevant details. A large amount of variance means that the answers returned by the system are too specific to the data. Data has a higher influence. High variance risks over fitting because it matches the data very well.
@@ -26,3 +28,24 @@ Bias and variance are used to describe families or collections of results, not a
 Favoring bias: You choose to get a simple, smooth curve to fit the data: this is a predetermined preference for a simple shape. In each iteration, the curve is so simple that it doesn't actually pass through the random sample of points. Over the whole collection of iterations the curves look very similar to each other. This shows high bias (favoring a certain shape) and low variance (the curves are very alike).
 
 Favoring variance: You choose to fit a complex curve to the sample points in each iteration. In each iteration, the curve does a better job of passing through some data points or getting close to them. Over the whole collection of iterations, the curves differ quite a bit. This shows low bias (not so much predetermined preference on the curve shape) and high variance (the curves are not alike and strongly influenced by the data).
+
+## Bayesian method to control overfitting
+
+From _Deep Learning_ the curves to demonstrate this method are actually straight lines. 
+
+The method for creating a curve to describe noisy data is the following. 
+First iteration:
+- prior: Create a set of random lines. This is the first prior to kick things off.
+- likelihood: Pick a point at random from the noisy data. Come up with a likelihood of all lines that through or near that point.
+- find the posterior: Multiply each point in the prior with the corresponding point new point's likelihood.
+
+Evidence is not addressed in this example, do not really understand why.
+
+Subsequent iterations:
+- prior: previous posterior
+- likelihood: same as above
+- posterior: multiply as above
+
+After each iteration, the posterior shrinks in size. The collection of lines that fits the first two points is smaller than the collection of lines that fits just the first point. Eventually the lines in the posterior look very similar, and they are necessarily fitted to the data somewhat since the likelihood uses a random sample from the data. 
+
+Bias and variance are not useful in this method. The result of the method is a collection of lines each with a different probability of being correct.

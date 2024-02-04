@@ -2,6 +2,9 @@
 
 Goal is to adjust data for the most efficient and effective learning process without changing the meaning of the data.
 
+## Definitions
+Feature is a value attributed to a sample. A sample can have many features.
+
 ## Data cleaning
 
 We should address blanks, incorrect entries, or other errors.
@@ -17,3 +20,4 @@ Garbage in, garbage out!
 
 ## Data consistency
 
+You apply transformations to numbers in data without changing relationships among them in order to prepare them for learning. Important principle: any time we modify our training data in some way, we must also modify all future data in the same way. That means a transformer that is used to prepare data for learning must also be used on data before the system is tested and used on data before it is analyzed by a deployed system.

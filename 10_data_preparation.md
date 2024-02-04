@@ -59,5 +59,6 @@ Decide on slice processing method: by sample, feature, or element.
 
 - Samplewise processing is appropriate if all the features are the same kind of data (e.g., an audio file with features of amplitude at a certain time). You would scale all the features in a single sample to the same scale. All samples are independent of other samples.
 
-- Featurewise processing is appropriate when features represent different things. It wouldn't make sense to scale all features to the same scale because the ranges and measurement units differ. 
-- 
+- Featurewise processing is appropriate when features represent different things. It wouldn't make sense to scale all features to the same scale because the ranges and measurement units differ. You can analyze and modify a single feature across all the samples. In this method, each column of feature values is called a fibre.
+
+- Elementwise processing is appropriate for data that is the same type of data with the same scale and measurement unit; for example, if all data is in inches and you want to convert to centimenters. You apply the same transformation to every value of every feature of every sample. This is common when working with image data: each pixel is an element.

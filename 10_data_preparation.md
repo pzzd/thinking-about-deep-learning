@@ -62,3 +62,9 @@ Decide on slice processing method: by sample, feature, or element.
 - Featurewise processing is appropriate when features represent different things. It wouldn't make sense to scale all features to the same scale because the ranges and measurement units differ. You can analyze and modify a single feature across all the samples. In this method, each column of feature values is called a fibre.
 
 - Elementwise processing is appropriate for data that is the same type of data with the same scale and measurement unit; for example, if all data is in inches and you want to convert to centimenters. You apply the same transformation to every value of every feature of every sample. This is common when working with image data: each pixel is an element.
+
+## Inverse Transformations
+
+Every transformation object comes with a routine to undo a transformation. This is required when the system reports back data. Here is the scenario: You normalize your original data and train a system. Now the deployed system takes input from a user, which is normalized before being used. The return result is normalized, but the value doesn't make sense for a user, so the data is inverse-transformed to put it into the scale and unit the user expects.
+
+If user-supplied sample is very out of range from the original data, the system may still give a reasonable output, or it may return something that doesn't make sense.

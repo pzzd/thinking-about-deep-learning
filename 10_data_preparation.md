@@ -55,4 +55,9 @@ Normalizing and standardizing routines use parameters to define how to do their 
 
 Decide on univariate or multivariate transformation. Univariate is a good option when features are independent. Multivariate is the option for when features have a dependency between them. These features should be scaled together (e.g., temperature and time of day).
 
-Decide on processing method.
+Decide on slice processing method: by sample, feature, or element.
+
+- Samplewise processing is appropriate if all the features are the same kind of data (e.g., an audio file with features of amplitude at a certain time). You would scale all the features in a single sample to the same scale. All samples are independent of other samples.
+
+- Featurewise processing is appropriate when features represent different things. It wouldn't make sense to scale all features to the same scale because the ranges and measurement units differ. 
+- 

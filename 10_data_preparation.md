@@ -68,3 +68,8 @@ Decide on slice processing method: by sample, feature, or element.
 Every transformation object comes with a routine to undo a transformation. This is required when the system reports back data. Here is the scenario: You normalize your original data and train a system. Now the deployed system takes input from a user, which is normalized before being used. The return result is normalized, but the value doesn't make sense for a user, so the data is inverse-transformed to put it into the scale and unit the user expects.
 
 If user-supplied sample is very out of range from the original data, the system may still give a reasonable output, or it may return something that doesn't make sense.
+
+## Cross validation
+When you do cross-validation of your system, you set aside one fold of data for testing, and use the rest for training. The transformer must be built from the training data only: be sure to leave out the validation data when making the transformer. Not doing so leads to information leakage: the validation data is leaked bc it affects the transformer.
+
+The transformation, built only on the training data, 

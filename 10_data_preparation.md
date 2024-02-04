@@ -72,4 +72,8 @@ If user-supplied sample is very out of range from the original data, the system 
 ## Cross validation
 When you do cross-validation of your system, you set aside one fold of data for testing, and use the rest for training. The transformer must be built from the training data only: be sure to leave out the validation data when making the transformer. Not doing so leads to information leakage: the validation data is leaked bc it affects the transformer.
 
-The transformation, built only on the training data, 
+The transformation, built only on the training data, is used on the validation data just like it would be used on data coming into a deployed system.
+
+Cross validation is done on a loop, with a different fold removed each time for validation data. In each iteration, compute a new transformation for that iteration's training set.
+
+Most libraries take care of this issue for you in their cross-validation routines.

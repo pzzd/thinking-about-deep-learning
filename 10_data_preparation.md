@@ -47,7 +47,12 @@ This is two-step process:
 
 2. Variance normalization: Scale it so that it has a standard deviation of 1. 68% percent of values in a feature lie in the range -1 to 1.
 
-## How to use a transformation
+## Reuse the transformation
 
 Normalizing and standardizing routines use parameters to define how to do their type of transformation. The parameters can be produced by libraries from the training data and they are saved for running the transformations later. This is important because when you test your system or use it after deployement this data must be transformed using the parameters from training. It is ok that the new data is not itself normalized or standardized.
 
+## How to apply a transformation
+
+Decide on univariate or multivariate transformation. Univariate is a good option when features are independent. Multivariate is the option for when features have a dependency between them. These features should be scaled together (e.g., temperature and time of day).
+
+Decide on processing method.

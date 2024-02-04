@@ -46,3 +46,8 @@ This is two-step process:
 1. Mean normalization or mean subtraction: Add or subtract a fixed value to each data point so that the mean value of every feature is 0.
 
 2. Variance normalization: Scale it so that it has a standard deviation of 1. 68% percent of values in a feature lie in the range -1 to 1.
+
+## How to use a transformation
+
+Normalizing and standardizing routines use parameters to define how to do their type of transformation. The parameters can be produced by libraries from the training data and they are saved for running the transformations later. This is important because when you test your system or use it after deployement this data must be transformed using the parameters from training. It is ok that the new data is not itself normalized or standardized.
+

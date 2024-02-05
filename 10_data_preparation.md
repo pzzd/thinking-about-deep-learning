@@ -85,7 +85,14 @@ A new, smaller dataset is created from the original training data. You can shrin
 - Feature selection or feature filtering is throwing out redundant, irrelevant, or unhelpful features. Useless data should go, but also almost useless data (e.g., two closely correlated features can be reduced to just one of them).
 - Dimensionality reduction is combining features so that one feature does the work of two. It works for features that are closely related without being redundant (e.g. BMI vs weight and height).
 
-##Principal Component Analysis is a mathematical technique used for dimensionality reduction. Completed by a ML library called a PCA routine. It is important to determine the right number of dimensions to compress and the right ones to combine. A library can provide hyperparameter searching to help, and then you might have to do this several times over to find the right hyperparameters. 
+## Principal Component Analysis
+
+Principal Component Analysis is a mathematical technique used for dimensionality reduction. Completed by a ML library called a PCA routine. It is important to determine the right number of dimensions to compress and the right ones to combine. A library can provide hyperparameter searching to help, and then you might have to do this several times over to find the right hyperparameters. 
 
 PCA can be applied to images. For example, simple images can be replaced by a combinations of a few predetermined images that are weightd and added together to make them match closesly with every image in the data set. This replaces the original dataset (every pixel of every image) with a smaller dataset (the weight of each component image).
 
+PCA creates projections, called eigenvectors: these are the component images in an image analysis. Each object in the dataset is reduced to the sum of weighted eigenvectors. The more eigenvectors that the PCA creates, the more accurately original data can be reconstructed from it.
+
+Now a system can be trained on the weights of eigenvectors instead of on every pixel of every original image. The numerical data produced by PCA--the weights--is the only data that the learning system uses; no real image data is used.
+
+In a deployed system, the input image is transformed into weights. This numerical data is used by a classifier system to classify the image.

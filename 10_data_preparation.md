@@ -80,7 +80,12 @@ Most libraries take care of this issue for you in their cross-validation routine
 
 ## Transformations that shrink the dataset
 
-A new, smaller dataset is created from the original training data. You can shrink the dataset to improve speed and accuracy when training. Going faster means you can train more for a given amount of time.
+A new, smaller dataset is created from the original training data. You can shrink the dataset to improve speed and accuracy when training. Going faster means you can train more for a given amount of time. But you want to meet the performance goals of your project, so that means effecting the appropriate features in an appropriate way.
 
 - Feature selection or feature filtering is throwing out redundant, irrelevant, or unhelpful features. Useless data should go, but also almost useless data (e.g., two closely correlated features can be reduced to just one of them).
 - Dimensionality reduction is combining features so that one feature does the work of two. It works for features that are closely related without being redundant (e.g. BMI vs weight and height).
+
+##Principal Component Analysis is a mathematical technique used for dimensionality reduction. Completed by a ML library called a PCA routine. It is important to determine the right number of dimensions to compress and the right ones to combine. A library can provide hyperparameter searching to help, and then you might have to do this several times over to find the right hyperparameters. 
+
+PCA can be applied to images. For example, simple images can be replaced by a combinations of a few predetermined images that are weightd and added together to make them match closesly with every image in the data set. This replaces the original dataset (every pixel of every image) with a smaller dataset (the weight of each component image).
+

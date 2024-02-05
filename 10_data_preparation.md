@@ -26,7 +26,7 @@ We should address blanks, incorrect entries, or other errors.
 
 Garbage in, garbage out!
 
-## Transformations
+## Transformations that change the data
 
 You apply transformations to numbers in data without changing relationships among them in order to prepare them for learning. Important principle: any time we modify our training data in some way, we must also modify all future data in the same way. That means a transformer that is used to prepare data for learning must also be used on data before the system is tested and used on data before it is analyzed by a deployed system.
 
@@ -51,7 +51,7 @@ This is two-step process:
 
 Normalizing and standardizing routines use parameters to define how to do their type of transformation. The parameters can be produced by libraries from the training data and they are saved for running the transformations later. This is important because when you test your system or use it after deployement this data must be transformed using the parameters from training. It is ok that the new data is not itself normalized or standardized.
 
-## How to apply a transformation
+## How to apply a transformation that changes data
 
 Decide on univariate or multivariate transformation. Univariate is a good option when features are independent. Multivariate is the option for when features have a dependency between them. These features should be scaled together (e.g., temperature and time of day).
 
@@ -77,3 +77,10 @@ The transformation, built only on the training data, is used on the validation d
 Cross validation is done on a loop, with a different fold removed each time for validation data. In each iteration, compute a new transformation for that iteration's training set.
 
 Most libraries take care of this issue for you in their cross-validation routines.
+
+## Transformations that shrink the dataset
+
+A new, smaller dataset is created from the original training data. You can shrink the dataset to improve speed and accuracy when training. Going faster means you can train more for a given amount of time.
+
+- Feature selection or feature filtering is throwing out redundant, irrelevant, or unhelpful features. Useless data should go, but also almost useless data (e.g., two closely correlated features can be reduced to just one of them).
+- Dimensionality reduction is combining features so that one feature does the work of two. It works for features that are closely related without being redundant (e.g. BMI vs weight and height).

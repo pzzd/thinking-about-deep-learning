@@ -67,9 +67,16 @@ The output for a range of x value equals a y value until a threshold value of x.
 
 Different segments are linear, resulting in a total curve that is not a linear function. Popular piecewise liner function are rectified linear unit (ReLU) and leaky ReLU.
 
+The point at where segments meat has no derivative. This has an impact on teaching neural networks.
+
 ### Smooth functions
 
-
+Later we'll see that computing derivatives for outputs of neurons is important in teaching neural networks. For derivatives, you need smooth, continuous functions. Examples:
+- softplus: smooths out ReLU
+- exponential ReLU
+- swish: another smoothed-out ReLU
+- sigmoid: sqashes x from negative infinity to infinity into a small range of output values to \[0,1\]
+- tanh (hyberbolic tangent): similar to sigmoid, squashes to \[-1,1\]
 
 
 

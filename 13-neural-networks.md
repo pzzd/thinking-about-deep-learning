@@ -30,10 +30,14 @@ How weights are initialized can have a big effect on how quickly the network lea
 
 ## Deep networks
 
-Deep learning refers to the fact that the network used for it is hierarchical and made of many layers. It implies a visual depiction that is vertical with input on the bottom, but that's just one convention. 
+Deep learning refers to the fact that the network used for it is hierarchical and made of many layers. It implies a visual depiction that is vertical with inputs on the bottom, but that's just one convention. 
 
-Some layers have neurons and process data. The total number of these layers is the depth of the network.
+A hidden layer has neurons and processes data. The total number of these layers is the depth of the network. Some layers are support layers: they do not have neurons and do no processing; they are not counted to determine the network depth.
 
 The layers are:
 - input layer: the bottom of the network. There is no processing in this layer, just memory for initial input values. Considered a support layer.
+- hidden layers: each layer with neurons that does some processing
+- output layer
+
+A fully connected layer (aka FC, linear, or dense layer) is a set of neurons that each receive an input from every neuron on the previous layer. A network made up of only dense layers is called a fully connected network (aka multilayer perceptron). There are other types of layers too; more to come.
 

@@ -101,5 +101,14 @@ In a classifier with two classes, there is a single output value: use sigmoid to
 
 For a classifier with more than two classes, a different activiation function is used.
 
+## Softmax
+
+Softmax is an operation performed on all of the output values from a classifier network with two or more output neurons. It processes them together to produce a new output value for each neuron: it turns raw score outputs into class probabilities between 0 and 1. The probabilities sum up to 1.
+
+Softmax takes the place of an activation function that would normally be applied to output neurons.
+
+If one class has a larger score than some other class, the network things that class is more likely. But the score values don't tell you how much more likely: use softmax to calculate that.
+
+Softmax exaggerates the influence of the output with the largest value. It crushes the other values such that the largest value dominates the others more obviously.
 
 

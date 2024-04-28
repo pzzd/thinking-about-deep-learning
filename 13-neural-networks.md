@@ -49,6 +49,10 @@ A neuron outputs a single value, but a layer has outputs from all of its neurons
 
 Network collapse describes the fact that networked neurons with no activation function are equivalent to a big single neuron. This is because the calculating the weighted some of the inputs all along is arithmetic with addtion and multiplication, so it can be all be reduced to the arithmetic in a single neuron. The functions used are only linear functions and can be combined. But a single neuron has little computation power and are not useful for deep learning.
 
+Later we will see that when a neuron's derivative is 0, it stops learning and makes it more likely that preceding neurons in the network stop learning too. A neuron whose output never changes no longer participates in learning: it has died.
+
+Computing derivatives for outputs of neurons is important in teaching neural networks. For derivatives, you need smooth, continuous functions.
+
 ## Activation function 
 
 An activation funciton (aka transfer function or non-linearity) is a non-linear function that takes a floating-point as input and outputs a floating point. Because it is a non-linear function, an activation function can be used to prevent network collapse. 
@@ -67,16 +71,35 @@ The output for a range of x value equals a y value until a threshold value of x.
 
 Different segments are linear, resulting in a total curve that is not a linear function. Popular piecewise liner function are rectified linear unit (ReLU) and leaky ReLU.
 
+ReLU use to be the most popular, but leaky ReLU is becoming moreso because it often learns faster. This because ReLU outputs 0 for every negatiave input, no matter how negative it is, and the derivative is also 0. 
+
 The point at where segments meat has no derivative. This has an impact on teaching neural networks.
 
 ### Smooth functions
 
-Later we'll see that computing derivatives for outputs of neurons is important in teaching neural networks. For derivatives, you need smooth, continuous functions. Examples:
+ Examples:
 - softplus: smooths out ReLU
 - exponential ReLU
 - swish: another smoothed-out ReLU
 - sigmoid: sqashes x from negative infinity to infinity into a small range of output values to \[0,1\]
 - tanh (hyberbolic tangent): similar to sigmoid, squashes to \[-1,1\]
+- sine wave: squashes to \[-1,1\], but doesn't saturate for inputs that are far from 0
+
+### Comparing activation functions
+
+Leaky ReLU provides a different output for every input. It's derivative is not 0. It does not die.
+
+The sine wave function has a non-zero derivative except at the top and bottom of each wave.
+
+Sigmoid and tanh are smooth and outputs are bounded. Experience has shown that networks learn most efficiently when all the values flowing through it are in a limited range.
+
+Generally speaking, eLU or leaky ReLU are applied to most neurons on hiddne layers, particulary fully connected layers.
+
+For a regression network, often no activation function is used on the final layer (or a linear function is used) because the specific output value is important.
+
+In a classifier with two classes, there is a single output value: use sigmoid to decide between one class or the other.
+
+For a classifier with more than two classes, a different activiation function is used.
 
 
 

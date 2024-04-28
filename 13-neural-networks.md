@@ -41,3 +41,7 @@ The layers are:
 
 A fully connected layer (aka FC, linear, or dense layer) is a set of neurons that each receive an input from every neuron on the previous layer. A network made up of only dense layers is called a fully connected network (aka multilayer perceptron). There are other types of layers too; more to come.
 
+## Tensors
+
+A neuron outputs a single value, but a layer has outputs from all of its neurons. We can describe the full output of values from a layer as a tensor. A tensor is a collection of numbers arranged in a box shape with any number of dimensions; tensor is a generic term for an arrangement of numbers like array/list/vector, grid/matrix, volume/block or shape with more dimensions. It's used in terms like input tensor (all the input values) or output tensor (all the output values). 
+

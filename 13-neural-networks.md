@@ -7,7 +7,7 @@ An artificial neuron used in machine learning is inspired by real neurons and on
 Modern artificial neurons have these parts
 - one or more inputs: An input is a floating-point number coming from an earlier output. An input is multiplied by its own floating-point weight. Each input has its own weight
 - bias: every neuron has its own bias, a number value. It does not come from the output of a previous neuron. It is treated like an input of 1.0 with its own weight.
-- a step where are all the weighted inputs and the bias are added together
+- a summation step where are all the weighted inputs and the bias are added together
 - action function: a mathematical function that takes the addition step as input and outputs a new floating-point value.
 
 ## Networks
@@ -44,4 +44,32 @@ A fully connected layer (aka FC, linear, or dense layer) is a set of neurons tha
 ## Tensors
 
 A neuron outputs a single value, but a layer has outputs from all of its neurons. We can describe the full output of values from a layer as a tensor. A tensor is a collection of numbers arranged in a box shape with any number of dimensions; tensor is a generic term for an arrangement of numbers like array/list/vector, grid/matrix, volume/block or shape with more dimensions. It's used in terms like input tensor (all the input values) or output tensor (all the output values). 
+
+## Network collapse
+
+Network collapse describes the fact that networked neurons with no activation function are equivalent to a big single neuron. This is because the calculating the weighted some of the inputs all along is arithmetic with addtion and multiplication, so it can be all be reduced to the arithmetic in a single neuron. The functions used are only linear functions and can be combined. But a single neuron has little computation power and are not useful for deep learning.
+
+## Activation function 
+
+An activation funciton (aka transfer function or non-linearity) is a non-linear function that takes a floating-point as input and outputs a floating point. Because it is a non-linear function, an activation function can be used to prevent network collapse. 
+
+The same activiation function is usually assigned to all the neurons in a layer. But you can also set a different activiation funtion for each neuron.
+
+### Straight-line functions
+
+Ok, so this is a linear function and doesn't prevent network collapse. This is used either on the output at the very end or after summation in order to process values for the activation function step.
+
+### Step functions
+
+The output for a range of x value equals a y value until a threshold value of x. At this value, the y value changes to another step. There several types of step functions.
+
+### Piecewise linear functions
+
+Different segments are linear, resulting in a total curve that is not a linear function. Popular piecewise liner function are rectified linear unit (ReLU) and leaky ReLU.
+
+### Smooth functions
+
+
+
+
 

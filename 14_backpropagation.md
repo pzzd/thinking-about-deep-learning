@@ -44,4 +44,10 @@ It may not be possible to get the error of a network to 0.
 
 We can improve all the weights in the network at the same time as long as we take very small steps. After adjusting weights, evaluate errors again to find new curves, new derivatives, and new deltas on a new sample. Then repeat.
 
+Use the deltas to change weights.
+- The output of the previous neuron is multiplied by the delta of the next neuron. This value could be positive or negative.
+- In an update step, this value is added to the weight of the previous neuron's input.
+- Use the neuron deltas at one layer to find the neuron deltas for its preceid
+
+
 

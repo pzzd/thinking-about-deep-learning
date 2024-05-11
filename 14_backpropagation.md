@@ -36,3 +36,12 @@ Now a simplified discussion of backpropagation.
 - The gradient accurately predicts the new error after each change to the prediction value as long as the change is small. A small change on a graph shows the gradient and curve are still close together. The bigger the change in the prediction value, the less accurate the prediction in the error:the gradient line and the error curve pull away from each other.
 - The change in error is equal to the slope of the gradient times the change in the output. I think that means that the slope of the gradient at the original output is delta! See Figure 14-9 and 14-10.
 - As soon as the value of the prediction changes, for any reason, the error curve changes and neuron's delta has to be computed all over again.
+- This is how we do a round of finding the deltas for all the neurons. They will be used later to change weights.
+
+It may not be possible to get the error of a network to 0.
+- It may not be possible to get every prediction with an error of 0 if adjusting weights in a previous neuron reduces error in one output neuroon but increases error in another output neuron.
+- We may not have the error to be 0 anyway. This might indicate overfitting: training error decreases but ability to handle new data gets worse. We want to minimize error without overfitting.
+
+We can improve all the weights in the network at the same time as long as we take very small steps. After adjusting weights, evaluate errors again to find new curves, new derivatives, and new deltas on a new sample. Then repeat.
+
+

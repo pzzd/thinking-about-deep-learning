@@ -20,8 +20,7 @@ Reducing overall error by adjusting network's weights happens in two steps:
 
 Activation functions are nonlinear and are essential to making neural networks work but we will ignore them in this discussion. Just know that activiation functions are accounted forin any backprop implementation.
 
-When any neuron output in the network changes, the final output error changes by a proportional amount. (This is true if you leave out activiation functions.) 
-
-Let's consider an neuron whose output has changed, for whatever reason; this change has an effect on the network's error, but what effect exactly? Delta is a number associated with a neuron as a result of evaluating the current network with the current sample. If a neuron's output changes by a particular amount (called m), we can multiply that change by the neuron's delta to see how the entire network's output will change. Because the neuron's output will change by m, we know the change in the final error is m times the neuron's delta.
-
-Where does m come from? We can produce an m by changing a neuron's input.
+When any neuron output in the network changes, the final output error changes by a proportional amount. (This is true if you leave out activiation functions.) The change in the network's final output can be predicted from either a change to any neuron's output or any weight in the network.
+- Let's consider an neuron whose output has changed, for whatever reason; this change has an effect on the network's error, but what effect exactly? Delta is a number associated with a neuron as a result of evaluating the current network with the current sample. If a neuron's output changes by a particular amount (called m), we can multiply that change by the neuron's delta to see how the entire network's output will change. Because the neuron's output will change by m, we know the change in the final error is m times the neuron's delta.
+- Where does m come from? We can produce an m by changing a neuron's input, that is, the previous neuron's output.
+- We can use the delta associated with each neuron to tell whether each of its incoming weights should be adjusted in the positive or negative direction.

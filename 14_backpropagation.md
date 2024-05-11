@@ -47,7 +47,9 @@ We can improve all the weights in the network at the same time as long as we tak
 Use the deltas to change weights.
 - The output of the previous neuron is multiplied by the delta of the next neuron. This value could be positive or negative.
 - In an update step, this value is added to the weight of the previous neuron's input.
-- Use the neuron deltas at one layer to find the neuron deltas for its preceid
+- Use the neuron deltas at one layer to find the neuron deltas for its preceding layer.
+- The previous neuron's delta is the sum of all the next neurons' deltas x the previous neuron's weight for its input into the next neurons. See Figure 14-16 for one hidden layer neuron and one output neuron and Figure 14-18 for one hidden layer and all the output neurons it's connected to.
+- At this point you can ignore the next neuron and think only about the previous neuron and its effect on the network error.
 
 
 

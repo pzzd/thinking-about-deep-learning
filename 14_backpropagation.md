@@ -27,5 +27,10 @@ When any neuron output in the network changes, the final output error changes by
 - Put another way: delta scales the change in the output of a neuron to give the change in the error.
 - Adding the original error and the change in the error gives the new error. If either m or delta is negative (not both!) the error decreases.
 
-  
-
+Now a simplified discussion of backpropagation.
+- Backprop is all about finding the delta value for each neuron.
+- First find the error gradients at the end of the network: the output layer.
+- The propagate those gradients backward to the start.
+- The error of a network is calculated by comparing the final output or prediction of a network with the label for the sample. For example you could make lists of predictions and lists of labels and compare them with one-hot encoding. Cross entropy is used for this. Almost all deep learning libraries have a built-in cross entropy function to find the error in a classifier. This function also provides a gradient to show how the error will change if we increase any of its inputs.
+- How much should we nudge an input? Look at the error gradient (the slope of the error curve, that is, its derivative) to find decide. The cross entropy function does NOT give the error curve, only the derivative. See Figure 14-9 for an example.
+- The gradient accurately predicts the new error after each change to the prediction value as long as the change is small. A small change on a graph shows the gradient and curve are still close together. The bigger the change in the prediction value, the less accurate the prediction in the error:the gradient line and the error curve pull away from each other.

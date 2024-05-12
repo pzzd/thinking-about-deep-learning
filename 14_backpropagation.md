@@ -55,7 +55,7 @@ Use the deltas to change weights.
 Calculating deltas is often as efficient as calculating outputs.
 - When we evaluate a sample, use feed-forward, left-to-right flow. the output from a neuron A to neuron C uses a connection with weight AC. The result is Ao x AC.
 - To compute A-delta, go from right to left. C-delta uses the connection AC to neuron A as C-delta x AC (which is A-delta). 
-- Going right to left, you have to treat the output layer as a special case because there are 'next layer' deltas to use.
+- Going right to left, you have to treat the output layer as a special case because there are 'next layer' deltas to use. The special way to treat the output layer neurons, to find every neuron's delta, is to use the error gradient for a prediction about how to change the output.  neuron's delta = neuron's m / network erro m.
 - We didn't deal with activation functions. With them the basics are the same, but there are a lot of details.
 
   

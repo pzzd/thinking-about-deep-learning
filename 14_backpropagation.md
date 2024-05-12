@@ -60,4 +60,10 @@ Calculating deltas is often as efficient as calculating outputs.
 - We didn't deal with activation functions. With them the basics are the same, but there are a lot of details.
 - Using a GPU makes backpropagation very fast, it can multiply all deltas and weights for an entire layer simultaneously. Parallel processing is the key reason why backprop has made learning practical for huge neural networks.
 
+Learning rate
+- We should only change a weight by a small amount, but if it's too little we will spend a lot of time learning. If it's too much the network may overshoot and overcorrect over and over again.
+- Control the amount of change to the weights with the hyperparameter called the 'learning rate' (η, eta).
+- Learning rate is between 0 and 1. 0 is no learning; 1 results in big changes to weights. In practice, it's set at slightly larger than 0.
+- η is simply multiplied to previous neuron's output and next neuron's delta, and then added to the weight to change it. new AC = AC + (A0 x Cδ x η).
+
   

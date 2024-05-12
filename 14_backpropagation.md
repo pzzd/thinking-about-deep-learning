@@ -36,6 +36,7 @@ Now a simplified discussion of backpropagation.
 - The gradient accurately predicts the new error after each change to the prediction value as long as the change is small. A small change on a graph shows the gradient and curve are still close together. The bigger the change in the prediction value, the less accurate the prediction in the error:the gradient line and the error curve pull away from each other.
 - The change in error is equal to the slope of the gradient times the change in the output. I think that means that the slope of the gradient at the original output is delta! See Figure 14-9 and 14-10.
 - As soon as the value of the prediction changes, for any reason, the error curve changes and neuron's delta has to be computed all over again.
+- neuron's delta = neuron's m x network error's m. The error gradient lets you pick a desired change in the neuron's output (neuron's m) and the results change in the error (error's m).
 - This is how we do a round of finding the deltas for all the neurons. They will be used later to change weights.
 
 It may not be possible to get the error of a network to 0.
@@ -55,7 +56,7 @@ Use the deltas to change weights.
 Calculating deltas is often as efficient as calculating outputs.
 - When we evaluate a sample, use feed-forward, left-to-right flow. the output from a neuron A to neuron C uses a connection with weight AC. The result is Ao x AC.
 - To compute A-delta, go from right to left. C-delta uses the connection AC to neuron A as C-delta x AC (which is A-delta). 
-- Going right to left, you have to treat the output layer as a special case because there are 'next layer' deltas to use. The special way to treat the output layer neurons, to find every neuron's delta, is to use the error gradient for a prediction about how to change the output.  neuron's delta = neuron's m / network erro m.
+- Going right to left, you have to treat the output layer as a special case because there are 'next layer' deltas to use. The special way to treat the output layer neurons, to find every neuron's delta, is to use the error gradient for a prediction about how to change the output.  neuron's delta = neuron's m x network error's m.
 - We didn't deal with activation functions. With them the basics are the same, but there are a lot of details.
 
   

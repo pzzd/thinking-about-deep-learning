@@ -50,6 +50,7 @@ Use the deltas to change weights.
 - Use the neuron deltas at one layer to find the neuron deltas for its preceding layer.
 - The previous neuron's delta is the sum of all the next neurons' deltas x the previous neuron's weight for its input into the next neurons. See Figure 14-16 for one hidden layer neuron and one output neuron and Figure 14-18 for one hidden layer and all the output neurons it's connected to.
 - At this point you can ignore the next neuron and think only about the previous neuron and its effect on the network error.
+- With the deltas of every neuron, we can adjust the values of the weights going into every neuron: this is training the network.
 
 Calculating deltas is often as efficient as calculating outputs.
 - When we evaluate a sample, use feed-forward, left-to-right flow. the output from a neuron A to neuron C uses a connection with weight AC. The result is Ao x AC.

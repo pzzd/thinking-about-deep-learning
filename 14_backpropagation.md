@@ -65,5 +65,6 @@ Learning rate
 - Control the amount of change to the weights with the hyperparameter called the 'learning rate' (η, eta).
 - Learning rate is between 0 and 1. 0 is no learning; 1 results in big changes to weights. In practice, it's set at slightly larger than 0.
 - η is simply multiplied to previous neuron's output and next neuron's delta, and then added to the weight to change it. new AC = AC + (A0 x Cδ x η).
+- Finding the right learning rate requires trial and error. Some algorithms help automate finding a good learning rate or adjust the learning rate as learning progresses. Or you can start at 0.001 and watch what happens.
 
   

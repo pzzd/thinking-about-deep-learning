@@ -1,4 +1,4 @@
-Backpropagation is the method of applying the gradient of the model's error backward from the final layer back to the first layer. 
+Backpropagation is the method of applying the gradient of the model's error backward from the final layer back to the first layer. See Figures 14-24 to 14-26.
 
 The error gradient is the informatin tht tells how the error changes when the weight changes.
 
@@ -58,5 +58,6 @@ Calculating deltas is often as efficient as calculating outputs.
 - To compute A-delta, go from right to left. C-delta uses the connection AC to neuron A as C-delta x AC (which is A-delta). 
 - Going right to left, you have to treat the output layer as a special case because there are 'next layer' deltas to use. The special way to treat the output layer neurons, to find every neuron's delta, is to use the error gradient for a prediction about how to change the output.  neuron's delta = neuron's m x network error's m.
 - We didn't deal with activation functions. With them the basics are the same, but there are a lot of details.
+- Using a GPU makes backpropagation very fast, it can multiply all deltas and weights for an entire layer simultaneously. Parallel processing is the key reason why backprop has made learning practical for huge neural networks.
 
   
